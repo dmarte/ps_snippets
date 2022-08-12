@@ -2,12 +2,11 @@ import { PadSquadDOM } from './../PadSquadDOM';
 
 (async (w: Window) => {
         console?.info('-- BACK TO SURVEY SCRIPT --')
-        console.log(w.__simpli.analytics())
 
         // Responsible to build the button to return to survey
         const element: HTMLElement = await PadSquadDOM.when('#simpli-vplacement-')
 
-        console.log(element)
+        console.log('ELEMENT: ---> ',element)
 
 })(window);
 
