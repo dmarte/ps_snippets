@@ -1,4 +1,4 @@
-import { PadSquadDOM } from './../PadSquadDOM';
+import { PadSquadDOM } from './../PadSquadDOM.js';
 (async (w) => {
     console?.info('-- BACK TO SURVEY SCRIPT --');
     const element = await PadSquadDOM.when('#simpli-vplacement-');
