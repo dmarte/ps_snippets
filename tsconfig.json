@@ -16,7 +16,8 @@
         "sourceRoot": "src",
         "sourceMap": true,
         "allowJs": true,
-        "moduleResolution": "classic",
+        "resolveJsonModule": false,
+        "moduleResolution": "Classic",
         "removeComments": true,
         "module": "ESNext",
         "esModuleInterop": true
