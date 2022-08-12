@@ -1,31 +1,45 @@
-export class PadSquadDOM {
-    static findOrFail(selector) {
-        const element = PadSquadDOM.find(selector);
-        if (!element) {
-            throw new DOMException(`No elements found for ${selector}.`);
+(function (factory) {
+    if (typeof module === "object" && typeof module.exports === "object") {
+        var v = factory(require, exports);
+        if (v !== undefined) module.exports = v;
+    }
+    else if (typeof define === "function" && define.amd) {
+        define(["require", "exports"], factory);
+    }
+})(function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.PadSquadDOM = void 0;
+    class PadSquadDOM {
+        static findOrFail(selector) {
+            const element = PadSquadDOM.find(selector);
+            if (!element) {
+                throw new DOMException(`No elements found for ${selector}.`);
+            }
+            return element;
         }
-        return element;
-    }
-    static find(selector) {
-        return document.querySelector(selector);
-    }
-    static when(selector) {
-        return new Promise((resolve, reject) => {
-            try {
-                const element = PadSquadDOM.findOrFail(selector);
-                resolve(element);
-            }
-            catch (error) {
-                const observer = new MutationObserver(() => {
-                    const element = PadSquadDOM.find(selector);
-                    if (!element) {
-                        return;
-                    }
+        static find(selector) {
+            return document.querySelector(selector);
+        }
+        static when(selector) {
+            return new Promise((resolve, reject) => {
+                try {
+                    const element = PadSquadDOM.findOrFail(selector);
                     resolve(element);
-                });
-                observer.observe(document.body, { childList: true, subtree: true });
-            }
-        });
+                }
+                catch (error) {
+                    const observer = new MutationObserver(() => {
+                        const element = PadSquadDOM.find(selector);
+                        if (!element) {
+                            return;
+                        }
+                        resolve(element);
+                    });
+                    observer.observe(document.body, { childList: true, subtree: true });
+                }
+            });
+        }
     }
-}
+    exports.PadSquadDOM = PadSquadDOM;
+});
 //# sourceMappingURL=PadSquadDOM.js.map
