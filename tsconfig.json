@@ -10,7 +10,8 @@
         "sourceMap": true,
         "allowJs": false,
         "removeComments": true,
-        "module": "ES6"
+        "module": "CommonJS",
+        "esModuleInterop": true
     },
     "include": ["src/**/*"],
     "exclude": ["specs/**/*.spec.ts"]
