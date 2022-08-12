@@ -1,6 +1,6 @@
 {
     "name": "padsquad_snippets",
-    "type": "module",
+    "type": "commonjs",
     "scripts": {
         "compile": "rm -rf ./dist && tsc"
     }
