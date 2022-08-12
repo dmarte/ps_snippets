@@ -168,7 +168,7 @@
     }
 
     // Initialize the back to survey plugin
-    w.PSBackToSurvey = new PSBackToSurvey(simpli);
+    w.PSBackToSurvey = new PSBackToSurvey(simpli, w.PSToolKit);
 
     w.PSBackToSurvey
     .take("survey_id")
