@@ -2,14 +2,10 @@ import { PadSquadDOM } from './../PadSquadDOM';
 
 (async (w: Window) => {
         console?.info('-- BACK TO SURVEY SCRIPT --')
-        console.log(w.__simpli)
-        // Only run this script when not preview mode.
-        if(!w.__simpli.isPreview) {
-            return
-        }
+        console.log(w.__simpli.analytics())
 
         // Responsible to build the button to return to survey
-        const element: HTMLElement = await PadSquadDOM.when('#air_init_holder')
+        const element: HTMLElement = await PadSquadDOM.when('#simpli-vplacement-')
 
         console.log(element)
 

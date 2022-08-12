@@ -16,11 +16,12 @@
         "sourceRoot": "src",
         "sourceMap": true,
         "allowJs": true,
-        "resolveJsonModule": false,
-        "moduleResolution": "Classic",
+        "resolveJsonModule": true,
+        "moduleResolution": "Node",
         "removeComments": true,
-        "module": "ESNext",
-        "esModuleInterop": true
+        "module": "ES2015",
+        "esModuleInterop": true,
+        "baseUrl": "./src",
     },
     "include": ["src/**/*"],
     "exclude": ["specs/**/*.spec.ts"]

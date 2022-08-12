@@ -1,11 +1,8 @@
-import { PadSquadDOM } from './../PadSquadDOM.js';
+import { PadSquadDOM } from './../PadSquadDOM';
 (async (w) => {
     console?.info('-- BACK TO SURVEY SCRIPT --');
-    console.log(w.__simpli);
-    if (!w.__simpli.isPreview) {
-        return;
-    }
-    const element = await PadSquadDOM.when('#air_init_holder');
+    console.log(w.__simpli.analytics());
+    const element = await PadSquadDOM.when('#simpli-vplacement-');
     console.log(element);
 })(window);
 //# sourceMappingURL=script.js.map
