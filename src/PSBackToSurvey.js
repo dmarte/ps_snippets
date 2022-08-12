@@ -1,15 +1,68 @@
-import { PadSquadDOM } from './PadSquadDOM.js';
+((w) => {
+    const Toolkit = {
+        initialize(SimpliTag) {
+            const placement = SimpliTag.vplacement()
+            const button = this.drawButton()
 
-console.log('POR AQUI PASO')
+            this.drawAfter(placement.wrapper, button)
+        },
+        /**
+         * Generate the button HTMLElement 
+         * 
+         * @param {HTMLElement}
+         * @returns {HTMLElement}
+         */
+        drawButton() {
+            const layout = `
+            <button 
+                type="button"
+                style="
+                    width: 250px; 
+                    height: 50px;
+                    margin: 40px 0; 
+                    margin-left: calc(50% - 125px); 
+                    background-color: #5abf59; 
+                    color:white;
+                    border:none;
+                    border-radius: 7px;
+                    font-size: 22px;
+                    font-weight: bold;
+                    font-family: 'sans-serif'
+                    "
+            >
+                Return to Survey
+            </button>
+            `.replace(/(\r\n|\n|\r)(\s{2})+/gm,'');
+    
+            const template = document.createElement('template')
+                template.innerHTML = layout
+            
+                return  template.content.firstChild
+        },
+        /**
+         * This method is responsible to draw a given HTMLElement after a given element.
+         * 
+         * @param {HTMLElement} existingNode The target to draw after sibling target
+         * @param {HTMLElement} nodeToAdd Target element to put as sibling element
+         * @param {HTMLElement} The parent node with the inserted sibling element.
+         */
+        drawAfter(existingNode, nodeToAdd) {
+            return existingNode.parentNode.insertBefore(nodeToAdd, existingNode.nextSibling)
+        }
+    }
 
-window.onload = async () => {
-        console?.info('-- BACK TO SURVEY SCRIPT --')
+    w.onload = async () => {
+        console.info('-- BACK TO SURVEY SCRIPT --')
+    
+        const simpli = w.__simpli
 
-        // Responsible to build the button to return to survey
-        const element = await PadSquadDOM.when('#simpli-vplacement-')
+        if(typeof simpli === "undefined") {
+            throw new TypeError('PSBackToSurvey rely on Simpli Tag script. PLease include the required script first.')
+        }
 
-        console.log('ELEMENT: ---> ',element)
-};
+        Toolkit.initialize(simpli)
+    }
+})(window)
 
 /*
 console.log(' 3:36 ');
