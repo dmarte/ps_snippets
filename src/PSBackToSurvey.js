@@ -1,19 +1,82 @@
 ((w) => {
-    const Toolkit = {
-        initialize(SimpliTag) {
-            const placement = SimpliTag.vplacement()
-            const button = this.drawButton()
+  w.PSToolKit = {
+    queryString: {
+        only(keys) {
+            const params = new URLSearchParams(window.top.location.search ?? '')
+            return keys.reduce(
+                (collection, current) =>{
+                    collection[current] = params.get(current) ?? null
+                    return current
+                }, 
+                {}
+            )
+        }
+    },
+    placeholder: {
+      /**
+       * This method takes a string and build an array of
+       * all keys withing curly braces Eg. "hello {name}" will return ['name']
+       *
+       * @param {string} characters The string to be evaluated
+       */
+      keys(characters) {
+        return (
+          String(url)
+            .match(/(\{[a-zA-Z_-]+\})/g)
+            ?.map((key) => key.replace(/(\{|\})/gi, "")) ?? []
+        );
+      },
+      /**
+       * Get a plain {object} with only the given keys
+       * @param {Array} keys Keys to be taken from placeholders object.
+       * @param {Object} placeholders Plain object with all placeholders.
+       * @returns {{[key: string] : any}}
+       */
+      only(keys, placeholders) {
+        return keys.reduce((collection, current) => {
+          if (placeholders[current]) {
+            collection[current] = placeholders[current];
+          }
+          return collection;
+        }, {});
+      },
+    },
 
-            this.drawAfter(placement.wrapper, button)
-        },
-        /**
-         * Generate the button HTMLElement 
-         * 
-         * @param {HTMLElement}
-         * @returns {HTMLElement}
-         */
-        drawButton() {
-            const layout = `
+    /**
+     * This method is responsible to draw a given HTMLElement after a given element.
+     *
+     * @param {HTMLElement} existingNode The target to draw after sibling target
+     * @param {HTMLElement} nodeToAdd Target element to put as sibling element
+     * @param {HTMLElement} The parent node with the inserted sibling element.
+     */
+    insertAfter(existingNode, nodeToAdd) {
+      return existingNode.parentNode.insertBefore(
+        nodeToAdd,
+        existingNode.nextSibling
+      );
+    },
+  };
+
+  /**
+   * Initialize the PSBackToSurvey script.
+   *
+   * @param {SimpliTag} SimpliTag The SimpliTag main object.
+   * @param {PSToolKit} ToolKit The Toolkit of PadSquad
+   */
+  const PSBackToSurvey = function (SimpliTag, ToolKit) {
+    const config = {
+      params: {},
+      trigger: "open",
+    };
+
+    /**
+     * Generate the button HTMLElement
+     *
+     * @param {HTMLElement}
+     * @returns {HTMLElement}
+     */
+    const draw = function () {
+      const layout = `
             <button 
                 type="button"
                 style="
@@ -27,42 +90,91 @@
                     border-radius: 7px;
                     font-size: 22px;
                     font-weight: bold;
-                    font-family: 'sans-serif'
+                    font-family: sans-serif
                     "
             >
                 Return to Survey
             </button>
-            `.replace(/(\r\n|\n|\r)(\s{2})+/gm,'');
-    
-            const template = document.createElement('template')
-                template.innerHTML = layout
-            
-                return  template.content.firstChild
-        },
-        /**
-         * This method is responsible to draw a given HTMLElement after a given element.
-         * 
-         * @param {HTMLElement} existingNode The target to draw after sibling target
-         * @param {HTMLElement} nodeToAdd Target element to put as sibling element
-         * @param {HTMLElement} The parent node with the inserted sibling element.
-         */
-        drawAfter(existingNode, nodeToAdd) {
-            return existingNode.parentNode.insertBefore(nodeToAdd, existingNode.nextSibling)
-        }
+            `.replace(/(\r\n|\n|\r)(\s{2})+/gm, "");
+
+      const template = document.createElement("template");
+      template.innerHTML = layout;
+
+      return template.content.firstChild;
+    };
+
+    /**
+     * This method initialize the plugin.
+     *
+     * @param {SimpliTagPlacement} placement The output resulting from call __simpli.vplacement()
+     */
+    const initialize = function (placement) {
+      w.PSToolKit.insertAfter(placement.wrapper, draw());
+    };
+
+    /**
+     * This method takes a query string param from the window.top
+     * and use its value as future placeholder.
+     *
+     * @param {string} originalKeyName The name of the quey string param in the current window.top
+     * @param {string} targetKeyName The placeholder key name to hold the value.
+     * @returns {PSBackToSurvey}
+     */
+    this.take = function (originalKeyName, targetKeyName) {
+      if (!targetKeyName) {
+        targetKeyName = originalKeyName;
+      }
+
+      this.config.params[originalKeyName] = targetKeyName;
+
+      return this;
+    };
+
+    /**
+     * This method register a handler to open a new (_blank) window with the given URL
+     *
+     * NOTE:
+     * Please note the given URL could have placeholders in the form of {keyName}
+     * that could be used by the plugin and replaced with its final values at the end.
+     *
+     * @param {string} targetUrl The URL where to target when user click on the handler button.
+     * @returns {PSBackToSurvey}
+     */
+    this.open = function (url) {
+        const holders = ToolKit.queryString.only(ToolKit.placeholder.keys(url))
+        console.log(holders)
+      return this;
+    };
+
+    this.start = function () {
+      initialize(SimpliTag.vplacement());
+      return this;
+    };
+  };
+
+  w.onload = async () => {
+    console.info("-- BACK TO SURVEY SCRIPT --");
+
+    const simpli = w.__simpli;
+
+    if (typeof simpli === "undefined") {
+      throw new TypeError(
+        "PSBackToSurvey rely on Simpli Tag script. PLease include the required script first."
+      );
     }
 
-    w.onload = async () => {
-        console.info('-- BACK TO SURVEY SCRIPT --')
-    
-        const simpli = w.__simpli
+    // Initialize the back to survey plugin
+    w.PSBackToSurvey = new PSBackToSurvey(simpli);
 
-        if(typeof simpli === "undefined") {
-            throw new TypeError('PSBackToSurvey rely on Simpli Tag script. PLease include the required script first.')
-        }
-
-        Toolkit.initialize(simpli)
-    }
-})(window)
+    w.PSBackToSurvey.take("survey_id")
+      .take("respondent_id")
+      .take("survey_id")
+      .open(
+        "https://echeloninsights.com?respondent={respondent_id}&survey_id={survey_id}"
+      )
+      .start();
+  };
+})(window);
 
 /*
 console.log(' 3:36 ');
