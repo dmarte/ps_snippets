@@ -19,7 +19,7 @@
         "resolveJsonModule": true,
         "moduleResolution": "node",
         "removeComments": true,
-        "module": "CommonJS",
+        "module": "ESNext",
         "esModuleInterop": true
     },
     "include": ["src/**/*"],

@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.PadSquadDOM = void 0;
-class PadSquadDOM {
+export class PadSquadDOM {
     static findOrFail(selector) {
         const element = PadSquadDOM.find(selector);
         if (!element) {
@@ -31,5 +28,4 @@ class PadSquadDOM {
         });
     }
 }
-exports.PadSquadDOM = PadSquadDOM;
 //# sourceMappingURL=PadSquadDOM.js.map
