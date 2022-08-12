@@ -1,5 +1,6 @@
 import { PadSquadDOM } from './../PadSquadDOM';
 (async (w) => {
+    console?.info('-- BACK TO SURVEY SCRIPT --');
     if (!w.__simpli.isPreview) {
         return;
     }
