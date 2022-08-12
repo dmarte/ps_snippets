@@ -9,7 +9,8 @@
         "sourceRoot": "src",
         "sourceMap": true,
         "allowJs": false,
-        "removeComments": true
+        "removeComments": true,
+        "module": "ES6"
     },
     "include": ["src/**/*"],
     "exclude": ["specs/**/*.spec.ts"]

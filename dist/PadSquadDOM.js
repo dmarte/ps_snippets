@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.PadSquadDOM = void 0;
 var PadSquadDOM = (function () {
     function PadSquadDOM() {
     }
@@ -34,5 +31,5 @@ var PadSquadDOM = (function () {
     };
     return PadSquadDOM;
 }());
-exports.PadSquadDOM = PadSquadDOM;
+export { PadSquadDOM };
 //# sourceMappingURL=PadSquadDOM.js.map
