@@ -105,8 +105,20 @@
      * @returns {PSBackToSurvey}
      */
     this.open = function (url) {
-      const holders = ToolKit.queryString.only(ToolKit.placeholder.keys(url));
-      console.log(holders);
+        const keysToBeReplaced = ToolKit.placeholder.keys(url)
+        const keysToBeTaken = Object.keys(config.params)
+        const parameters = ToolKit.queryString.only(keysToBeTaken)
+        
+        console.log('keysToBeReplaced', keysToBeReplaced)
+        console.log('keysToBeTaken', keysToBeTaken)
+        console.log('parameters', parameters)
+//         const holders = keysToBeTaken.reduce((collection, current)=> {
+// if(keysToBeReplaced.includes(config.params[current])) {
+// collection[config.params[current]] = parameters[]
+// }
+//             return collection
+//         }, {})
+//       console.log(holders);
       return this;
     };
 
