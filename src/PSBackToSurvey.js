@@ -1,16 +1,13 @@
 ((w) => {
   w.PSToolKit = {
     queryString: {
-        only(keys) {
-            const params = new URLSearchParams(window.top.location.search ?? '')
-            return keys.reduce(
-                (collection, current) =>{
-                    collection[current] = params.get(current) ?? null
-                    return current
-                }, 
-                {}
-            )
-        }
+      only(keys) {
+        const params = new URLSearchParams(window.top.location.search ?? "");
+        return keys.reduce((collection, current) => {
+          collection[current] = params.get(current) ?? null;
+          return current;
+        }, {});
+      },
     },
     placeholder: {
       /**
@@ -41,7 +38,17 @@
         }, {});
       },
     },
+    /**
+     * This method let you draw a string of HTML in to HTMLElement
+     * @param {string} html The HTML String
+     * @returns {HTMLElement}
+     */
+    draw(html) {
+      const template = document.createElement("template");
+      template.innerHTML = String(html).replace(/(\r\n|\n|\r)(\s{2})+/gm, "");
 
+      return template.content.firstChild;
+    },
     /**
      * This method is responsible to draw a given HTMLElement after a given element.
      *
@@ -67,49 +74,6 @@
     const config = {
       params: {},
       trigger: "open",
-    };
-
-    /**
-     * Generate the button HTMLElement
-     *
-     * @param {HTMLElement}
-     * @returns {HTMLElement}
-     */
-    const draw = function () {
-      const layout = `
-            <button 
-                type="button"
-                style="
-                    width: 250px; 
-                    height: 50px;
-                    margin: 40px 0; 
-                    margin-left: calc(50% - 125px); 
-                    background-color: #5abf59; 
-                    color:white;
-                    border:none;
-                    border-radius: 7px;
-                    font-size: 22px;
-                    font-weight: bold;
-                    font-family: sans-serif
-                    "
-            >
-                Return to Survey
-            </button>
-            `.replace(/(\r\n|\n|\r)(\s{2})+/gm, "");
-
-      const template = document.createElement("template");
-      template.innerHTML = layout;
-
-      return template.content.firstChild;
-    };
-
-    /**
-     * This method initialize the plugin.
-     *
-     * @param {SimpliTagPlacement} placement The output resulting from call __simpli.vplacement()
-     */
-    const initialize = function (placement) {
-      w.PSToolKit.insertAfter(placement.wrapper, draw());
     };
 
     /**
@@ -141,13 +105,36 @@
      * @returns {PSBackToSurvey}
      */
     this.open = function (url) {
-        const holders = ToolKit.queryString.only(ToolKit.placeholder.keys(url))
-        console.log(holders)
+      const holders = ToolKit.queryString.only(ToolKit.placeholder.keys(url));
+      console.log(holders);
       return this;
     };
 
     this.start = function () {
-      initialize(SimpliTag.vplacement());
+      const button = ToolKit.draw(`
+                        <button 
+                            type="button"
+                            style="
+                                width: 250px; 
+                                height: 50px;
+                                margin: 40px 0; 
+                                margin-left: calc(50% - 125px); 
+                                background-color: #5abf59; 
+                                color:white;
+                                border:none;
+                                border-radius: 7px;
+                                font-size: 22px;
+                                font-weight: bold;
+                                font-family: sans-serif
+                                "
+                        >
+                            Return to Survey
+                        </button>
+                    `);
+    // Attach listeners 
+    button.addEventListener('click', config.trigger)
+    // Draw in the wrapper
+      ToolKit.insertAfter(SimpliTag.vplacement().wrapper, button);
       return this;
     };
   };
@@ -168,7 +155,6 @@
 
     w.PSBackToSurvey.take("survey_id")
       .take("respondent_id")
-      .take("survey_id")
       .open(
         "https://echeloninsights.com?respondent={respondent_id}&survey_id={survey_id}"
       )
