@@ -147,7 +147,7 @@
                         </button>
                     `);
     // Attach listeners 
-    button.addEventListener('click', config.trigger)
+    // button.addEventListener('click', config.trigger)
 
     console.log(button)
     // Draw in the wrapper
