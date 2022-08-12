@@ -32,7 +32,8 @@ export class PadSquadDOM {
         try {
           const element = PadSquadDOM.findOrFail(selector);
           resolve(element);
-        } catch {
+        } catch(ex) {
+          console.dir(ex)
           const observer = new MutationObserver(() => {
             const element = PadSquadDOM.find(selector);
   
