@@ -1,0 +1,6 @@
+{
+    "name": "padsquad_snippets",
+    "scripts": {
+        "compile": "rm -rf ./dist && tsc"
+    }
+}

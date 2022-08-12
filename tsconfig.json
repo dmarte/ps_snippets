@@ -1,0 +1,15 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "lib": ["ES2015.Promise", "DOM","DOM.Iterable","ES2015"],
+        "outDir": "dist",
+        "types": ["./types/simpli"],
+        "watch": true,
+        "sourceRoot": "src",
+        "sourceMap": true,
+        "allowJs": false,
+        "removeComments": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["specs/**/*.spec.ts"]
+}
