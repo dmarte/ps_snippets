@@ -123,6 +123,9 @@
     };
 
     this.start = function () {
+      
+      console.info("-- BACK TO SURVEY SCRIPT --");
+
       const button = ToolKit.draw(`
                         <button 
                             type="button"
@@ -145,6 +148,8 @@
                     `);
     // Attach listeners 
     button.addEventListener('click', config.trigger)
+
+    console.log(button)
     // Draw in the wrapper
       ToolKit.insertAfter(SimpliTag.vplacement().wrapper, button);
       return this;
@@ -152,7 +157,7 @@
   };
 
   w.onload = async () => {
-    console.info("-- BACK TO SURVEY SCRIPT --");
+    
 
     const simpli = w.__simpli;
 
@@ -165,7 +170,8 @@
     // Initialize the back to survey plugin
     w.PSBackToSurvey = new PSBackToSurvey(simpli);
 
-    w.PSBackToSurvey.take("survey_id")
+    w.PSBackToSurvey
+    .take("survey_id")
       .take("respondent_id")
       .open(
         "https://echeloninsights.com?respondent={respondent_id}&survey_id={survey_id}"
