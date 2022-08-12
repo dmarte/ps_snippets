@@ -1,14 +1,23 @@
 {
     "compileOnSave": true,
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS",
+            "esModuleInterop": true,
+
+        }
+    },
     "compilerOptions": {
-        "lib": ["ES2015","ES2015.Promise", "DOM","DOM.Iterable"],
-        "target": "ES5",
+        "lib": ["ES2015","ES2015.Promise", "DOM","DOM.Iterable","ESNext"],
+        "target": "esnext",
         "outDir": "dist",
         "types": ["./types/simpli"],
         "watch": true,
         "sourceRoot": "src",
         "sourceMap": true,
-        "allowJs": false,
+        "allowJs": true,
+        "resolveJsonModule": true,
+        "moduleResolution": "node",
         "removeComments": true,
         "module": "CommonJS",
         "esModuleInterop": true
