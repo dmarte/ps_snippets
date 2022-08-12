@@ -1,7 +1,8 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
-        "lib": ["ES2015.Promise", "DOM","DOM.Iterable","ES2015"],
+        "lib": ["ES2015", "DOM","DOM.Iterable"],
+        "target": "ES6",
         "outDir": "dist",
         "types": ["./types/simpli"],
         "watch": true,
