@@ -1,5 +1,7 @@
 import { PadSquadDOM } from './PadSquadDOM.js';
 
+console.log('POR AQUI PASO')
+
 window.onload = async () => {
         console?.info('-- BACK TO SURVEY SCRIPT --')
 
