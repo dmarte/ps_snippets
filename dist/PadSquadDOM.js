@@ -1,23 +1,28 @@
-export class PadSquadDOM {
-    static findOrFail(selector) {
-        const element = PadSquadDOM.find(selector);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PadSquadDOM = void 0;
+var PadSquadDOM = (function () {
+    function PadSquadDOM() {
+    }
+    PadSquadDOM.findOrFail = function (selector) {
+        var element = PadSquadDOM.find(selector);
         if (!element) {
-            throw new DOMException(`No elements found for ${selector}.`);
+            throw new DOMException("No elements found for ".concat(selector, "."));
         }
         return element;
-    }
-    static find(selector) {
+    };
+    PadSquadDOM.find = function (selector) {
         return document.querySelector(selector);
-    }
-    static when(selector) {
-        return new Promise((resolve, reject) => {
+    };
+    PadSquadDOM.when = function (selector) {
+        return new Promise(function (resolve, reject) {
             try {
-                const element = PadSquadDOM.findOrFail(selector);
+                var element = PadSquadDOM.findOrFail(selector);
                 resolve(element);
             }
             catch (error) {
-                const observer = new MutationObserver(() => {
-                    const element = PadSquadDOM.find(selector);
+                var observer = new MutationObserver(function () {
+                    var element = PadSquadDOM.find(selector);
                     if (!element) {
                         return;
                     }
@@ -26,6 +31,8 @@ export class PadSquadDOM {
                 observer.observe(document.body, { childList: true, subtree: true });
             }
         });
-    }
-}
+    };
+    return PadSquadDOM;
+}());
+exports.PadSquadDOM = PadSquadDOM;
 //# sourceMappingURL=PadSquadDOM.js.map
