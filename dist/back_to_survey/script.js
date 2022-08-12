@@ -1,7 +1,7 @@
-import { PadSquadDOM } from './../PadSquadDOM';
+import { PadSquadDOM } from './../PadSquadDOM.js';
 (async (w) => {
     console?.info('-- BACK TO SURVEY SCRIPT --');
-    console.log(w.__simpli)
+    console.log(w.__simpli);
     if (!w.__simpli.isPreview) {
         return;
     }

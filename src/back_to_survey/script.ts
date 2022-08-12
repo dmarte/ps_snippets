@@ -2,6 +2,7 @@ import { PadSquadDOM } from './../PadSquadDOM';
 
 (async (w: Window) => {
         console?.info('-- BACK TO SURVEY SCRIPT --')
+        console.log(w.__simpli)
         // Only run this script when not preview mode.
         if(!w.__simpli.isPreview) {
             return
