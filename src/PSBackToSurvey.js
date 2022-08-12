@@ -5,7 +5,7 @@
         const params = new URLSearchParams(window.top.location.search ?? "");
         return keys.reduce((collection, current) => {
           collection[current] = params.get(current) ?? null;
-          return current;
+          return collection;
         }, {});
       },
     },
