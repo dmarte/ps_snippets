@@ -176,11 +176,13 @@
                     `);
     
     SimpliTag.listeners.add("onStandardEventTracked", function(event) {
+        if(event.label === 'main creative viewed') {
             console.log('Simpli Tag Event ------>', event)
+        }
     });
 
     const tag = document.querySelector(id)
-    console.dir(tag)
+    console.dir(tag.dataset)
 
     // Attach click listener 
     // button.addEventListener('click', () => {
