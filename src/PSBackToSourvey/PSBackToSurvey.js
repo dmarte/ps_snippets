@@ -1,3 +1,10 @@
+/**
+ * There are users that receive a preview link with the creative so they can see the placement
+ * then do the test and must return back to the survey to continue with the marketing questions.
+ *
+ * The purpose of this plugin script is to render a button below the creative to let those users
+ * that comes from a survey return back and continue with they survey.
+ */
 import { PSToolKit } from './PSToolKit.js';
 import { PSDom } from './PSDom.js';
 
@@ -119,6 +126,7 @@ import { PSDom } from './PSDom.js';
           });
 
           SimpliTag.listeners.add('onStandardEventTracked', function (event) {
+            console.log(event)
             if (event.label === 'main creative viewed') {
               console.log('PSBackToSurvey: DISPLAYED')
               button.style.display = 'block';
