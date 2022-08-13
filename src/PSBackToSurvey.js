@@ -120,6 +120,7 @@ import { PSDom } from './PSDom.js';
 
           SimpliTag.listeners.add('onStandardEventTracked', function (event) {
             if (event.label === 'main creative viewed') {
+              console.log('PSBackToSurvey: DISPLAYED')
               button.style.display = 'block';
             }
           });
