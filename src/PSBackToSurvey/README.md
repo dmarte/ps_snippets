@@ -33,21 +33,20 @@ The user will be prompted to the new URL:
   https://example.com?bar=20
  ```
 
-### Install
-1. Go to Simpli Studio
-2. Search you desired campaign
-3. Select a placement and go to `Placement Settings`
-4. Add the following script tag into the `APPEND SCRIPTS` section
+## Install
+1. Go to Simpli Studio.
+2. Search you desired campaign.
+3. Select a placement and go to `Placement Settings`.
+4. Add the following script tag into the `APPEND SCRIPTS` section.
 
 ```html
-<!-- Basic template to install the script -->
-<!-- <cdn> Replace with the CDN URL of the plugin -->
+<!-- BASE TEMPLATE TO INSTALL THE SCRIPT -->
 <!-- data-target is where you put your target URL -->
 <script
   id="PSBackToSurvey"
   type="module"
-  src="<cdn>/ps_snippets/dist/PSBackToSurvey.min.js"
-  data-target="https://example.org?foo={foo_id}&var={var_id}"
+  src="https://dmarte.github.io/ps_snippets/dist/PSBackToSurvey.bundle.min.js"
+  data-target=""
 ></script>
 ```
-> PLEASE DON'T FORGET TO REPLACE  `data-target` with the correct URL.
+> PLEASE DON'T FORGET TO SET  `data-target` WITH THE PROPPER URL.
