@@ -185,17 +185,14 @@
 
     // [STEP 4] Bind required events
     button.addEventListener('click', () => {
-         console.log('Use:', this.getParamsToUse())
-         console.log('Replaced by:', this.getParamsToBeSet())
-         console.log('With in this URL:', this.getUrl())
-        // window.open(this.getUrl(), '_blank')
+        window.open(this.getUrl(), '_blank')
     })
     
-    // SimpliTag.listeners.add("onStandardEventTracked", function(event) {
-    //     if(event.label === 'main creative viewed') {
-    //         console.log('Simpli Tag Event ------>', event)
-    //     }
-    // });
+    SimpliTag.listeners.add("onStandardEventTracked", function(event) {
+        if(event.label === 'main creative viewed') {
+            button.style.display = 'block'
+        }
+    });
 
     // [STEP 5] - Draw in the wrapper
     ToolKit.insertAfter(SimpliTag.vplacement().wrapper, button);
