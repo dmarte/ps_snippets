@@ -75,10 +75,13 @@ import { PSDom } from './PSDom.js';
      * @returns {void}
      */
     this.start = function (id = '#PSBackToSurvey') {
+
+      console.log('PSBackToSurvey: START')
+
       PSDom
         .when(id)
         .then((tag) => {
-
+          console.log('PSBackToSurvey: TAG READY')
           // [STEP 1] Draw the button to be added
           const button = PSDom.draw(`
                         <button 
@@ -130,6 +133,7 @@ import { PSDom } from './PSDom.js';
   };
 
   PSBackToSurvey.prototype.make = function () {
+    console.log('PSBackToSurvey: MAKE')
     const simpli = w.__simpli;
 
     if (typeof simpli === 'undefined') {
