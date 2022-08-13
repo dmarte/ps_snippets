@@ -10,6 +10,21 @@
       },
     },
     placeholder: {
+        write (string, placeholders = {}) {
+            return Object
+                .keys(placeholders)
+                .reduce((text, key) =>  text.replaceAll(`{${key}}`, placeholders[key] ?? ''), string)
+         },
+         transform (map, values) {
+            return Object
+                    .keys(map)
+                    .reduce((output, key) => {
+                        if(values[key]) {
+                           output[map[key]] = values[key] 
+                        }
+                        return output
+                    }, {})
+        },
       /**
        * This method takes a string and build an array of
        * all keys withing curly braces Eg. "hello {name}" will return ['name']
@@ -73,7 +88,8 @@
   const PSBackToSurvey = function (SimpliTag, ToolKit) {
     this.$config = {
       params: {},
-      trigger: "open",
+      url: '',
+      trigger: () => null,
     };
 
     /**
@@ -95,6 +111,27 @@
     };
 
     /**
+     * Get the parameters taken from Query String 
+     * that will be used in the final URL.
+     * 
+     * @returns {[key: string]: string}
+     */
+    this.getParamsToUse = () => ToolKit.queryString.only(Object.keys(this.$config.params))
+
+    /**
+     * Get the parameters to be set in the URL.
+     * 
+     * @returns {[key: string]: string}
+     */
+    this.getParamsToBeSet = () => ToolKit.placeholder.transform(this.$config.params, this.getParamsToUse())
+
+    /**
+     * Return the Final URL that will be opened.
+     * @returns {string}
+     */
+    this.getUrl = () =>  ToolKit.placeholder.write(url, this.getParamsToBeSet())
+
+    /**
      * This method register a handler to open a new (_blank) window with the given URL
      *
      * NOTE:
@@ -104,21 +141,12 @@
      * @param {string} targetUrl The URL where to target when user click on the handler button.
      * @returns {PSBackToSurvey}
      */
-    this.open = function (url) {
-        const keysToBeReplaced = ToolKit.placeholder.keys(url)
-        const keysToBeTaken = Object.keys(config.params)
-        const parameters = ToolKit.queryString.only(keysToBeTaken)
+    this.url = function (url) {
         
-        console.log('keysToBeReplaced', keysToBeReplaced)
-        console.log('keysToBeTaken', keysToBeTaken)
-        console.log('parameters', parameters)
-//         const holders = keysToBeTaken.reduce((collection, current)=> {
-// if(keysToBeReplaced.includes(config.params[current])) {
-// collection[config.params[current]] = parameters[]
-// }
-//             return collection
-//         }, {})
-//       console.log(holders);
+         console.log('Use:', this.getParamsToUse())
+         console.log('Replaced by:', this.getParamsToBeSet())
+         console.log('With in this URL:', this.getUrl())
+
       return this;
     };
 
@@ -146,10 +174,16 @@
                             Return to Survey
                         </button>
                     `);
-    // Attach listeners 
-    // button.addEventListener('click', config.trigger)
+    
+    SimpliTag.listeners.add("onStandardEventTracked", function(event) {
+            console.log('Simpli Tag Event ------>', event)
+    });
 
-    console.log(button)
+    // Attach click listener 
+    button.addEventListener('click', () => {
+        window.open(this.getUrl(), '_blank')
+    })
+
     // Draw in the wrapper
       ToolKit.insertAfter(SimpliTag.vplacement().wrapper, button);
       return this;
