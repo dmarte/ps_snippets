@@ -7,9 +7,38 @@ to be test, then check what is the experience with that creative and after test,
 > that comes from a survey return and continue with they survey.
 
 ### How it works?
+
 The plugin is auto initialized when the script is included in the page. You just have to set the `URL` with the placeholders that must be used to redirect the user.
 
+`PSBackToSurvey` use `window.location.search` values to replace the placeholders used within a URL.
+
+#### Example Script:
+ ```html
+  <script
+   id="PSBackToSurvey"
+   type="module"
+   src="<cdn>/ps_snippets/dist/PSBackToSurvey.min.js"
+   data-target="https://example.com?bar={foo_id}"
+  ></script>
+ ```
+> Please note the part `?bar={foo_id}`
+##### Example `URL` where is rendered the script:
+ ```text
+  http://tools.padsquad.com/preview/?foo_id=20
+  ```
+In the above example the plugin will **try to find in the query string** a variable named `foo_id` (`?foo_id=20`), then use its value to replace any placeholder with the same name in the provided `data-target` property.
+#### Final result
+The user will be prompted to the new URL:
+ ```text
+  https://example.com?bar=20
+ ```
+
 ### Install
+1. Go to Simpli Studio
+2. Search you desired campaign
+3. Select a placement and go to `Placement Settings`
+4. Add the following script tag into the `APPEND SCRIPTS` section
+
 ```html
 <!-- Basic template to install the script -->
 <!-- <cdn> Replace with the CDN URL of the plugin -->
@@ -20,27 +49,5 @@ The plugin is auto initialized when the script is included in the page. You just
   src="<cdn>/ps_snippets/dist/PSBackToSurvey.min.js"
   data-target="https://example.org?foo={foo_id}&var={var_id}"
 ></script>
-
 ```
->### Important
-> The plugin use `Query String` values to replace the placeholders used within a URL.
->
-> #### Example Script:
-> ```html
->  <script
->   id="PSBackToSurvey"
->   type="module"
->   src="<cdn>/ps_snippets/dist/PSBackToSurvey.min.js"
->   data-target="https://example.com?bar={foo_id}"
->  ></script>
-> ```
-> ##### Example `URL` where is rendered the script:
-> ```text
->  http://tools.padsquad.com/preview/?foo_id=20
->  ```
-> In the above example the plugin will **try to find in the query string** a variable named `foo_id` (`?foo_id=20`), then use its value to replace any placeholder with the same name in the provided `data-target` property.
-> #### Final result
-> The user will be prompted to the new URL:
-> ```text
->  https://example.com?bar=20
-> ```
+> PLEASE DON'T FORGET TO REPLACE  `data-target` with the correct URL.
