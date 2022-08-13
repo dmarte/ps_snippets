@@ -8,10 +8,10 @@ declare interface SimpliPlacement {
 }
 
 declare enum SimpliTagListener {
-    standard = 'onStandardEventTracked',
-    custom = 'onCustomEventTracked',
-    click = 'onClickEventTracked',
-    video = 'onVideoEventTracked'
+    onStandardEventTracked = 'onStandardEventTracked',
+    onCustomEventTracked = 'onCustomEventTracked',
+    onClickEventTracked = 'onClickEventTracked',
+    onVideoEventTracked = 'onVideoEventTracked'
 }
 
 declare interface SimpliTag {

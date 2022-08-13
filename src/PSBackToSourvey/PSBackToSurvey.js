@@ -5,8 +5,8 @@
  * The purpose of this plugin script is to render a button below the creative to let those users
  * that comes from a survey return back and continue with they survey.
  */
-import { PSToolKit } from './PSToolKit.js';
-import { PSDom } from './PSDom.js';
+import { PSToolKit } from '../PSToolKit.js';
+import { PSDom } from '../PSDom.js';
 
 ((w) => {
   /**
@@ -42,14 +42,14 @@ import { PSDom } from './PSDom.js';
      * Get the parameters taken from Query String
      * that will be used in the final URL.
      *
-     * @returns {[key: string]: string}
+     * @returns {Object<string, string>}
      */
     this.getParamsToUse = () => PSToolKit.queryString.only(Object.keys(this.$config.params));
 
     /**
      * Get the parameters to be set in the URL.
      *
-     * @returns {[key: string]: string}
+     * @returns {Object<string, string>}
      */
     this.getParamsToBeSet = () => PSToolKit.placeholder.transform(this.$config.params, this.getParamsToUse());
 
@@ -69,8 +69,8 @@ import { PSDom } from './PSDom.js';
      * @param {string} targetUrl The URL where to target when user click on the handler button.
      * @returns {PSBackToSurvey}
      */
-    this.url = function (url) {
-      this.$config.url = url;
+    this.url = function (targetUrl) {
+      this.$config.url = targetUrl;
       return this;
     };
 
@@ -107,7 +107,7 @@ import { PSDom } from './PSDom.js';
                                 font-family: sans-serif
                                 "
                         >
-                            Return to Survey
+                            ${tag.dataset.text ?? 'Return to Survey'}
                         </button>
                     `);
 
