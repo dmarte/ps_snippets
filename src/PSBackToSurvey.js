@@ -187,6 +187,7 @@
     
     SimpliTag.listeners.add("onStandardEventTracked", function(event) {
         if(event.label === 'main creative viewed') {
+            console.log('----- [PS BACK TO SURVEY] -----')
             button.style.display = 'block'
         }
     });
