@@ -1,5 +1,5 @@
-import {PSToolKit} from 'PSToolKit.js'
-import {PSDom} from 'PSDom.js'
+import {PSToolKit} from './PSToolKit.js'
+import {PSDom} from './PSDom.js'
 
 ((w) => {
   /**
