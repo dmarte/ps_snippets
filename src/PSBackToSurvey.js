@@ -1,5 +1,5 @@
-import {PSToolKit} from './PSToolKit.js'
-import {PSDom} from './PSDom.js'
+import { PSToolKit } from './PSToolKit.js';
+import { PSDom } from './PSDom.js';
 
 ((w) => {
   /**
@@ -12,7 +12,6 @@ import {PSDom} from './PSDom.js'
     this.$config = {
       params: {},
       url: '',
-      trigger: () => null,
     };
 
     /**
@@ -34,25 +33,25 @@ import {PSDom} from './PSDom.js'
     };
 
     /**
-     * Get the parameters taken from Query String 
+     * Get the parameters taken from Query String
      * that will be used in the final URL.
-     * 
+     *
      * @returns {[key: string]: string}
      */
-    this.getParamsToUse = () => ToolKit.queryString.only(Object.keys(this.$config.params))
+    this.getParamsToUse = () => ToolKit.queryString.only(Object.keys(this.$config.params));
 
     /**
      * Get the parameters to be set in the URL.
-     * 
+     *
      * @returns {[key: string]: string}
      */
-    this.getParamsToBeSet = () => ToolKit.placeholder.transform(this.$config.params, this.getParamsToUse())
+    this.getParamsToBeSet = () => ToolKit.placeholder.transform(this.$config.params, this.getParamsToUse());
 
     /**
      * Return the Final URL that will be opened.
      * @returns {string}
      */
-    this.getUrl = () =>  ToolKit.placeholder.write(this.$config.url, this.getParamsToBeSet())
+    this.getUrl = () => ToolKit.placeholder.write(this.$config.url, this.getParamsToBeSet());
 
     /**
      * This method register a handler to open a new (_blank) window with the given URL
@@ -65,22 +64,23 @@ import {PSDom} from './PSDom.js'
      * @returns {PSBackToSurvey}
      */
     this.url = function (url) {
-        this.$config.url = url
+      this.$config.url = url;
       return this;
     };
 
     /**
      * Initialize the plugin in the browser.
-     * 
+     *
      * @param {string} id The ID of the script with the meta data.
      * @returns {void}
      */
-    this.start = function ( id='#PSBackToSurvey' ) {
-      PSDom.when(id).then((tag) => {
-        console.dir(tag)
-      })
-      // [STEP 1] Draw the button to be added
-      const button = ToolKit.draw(`
+    this.start = function (id = '#PSBackToSurvey') {
+      PSDom
+        .when(id)
+        .then((tag) => {
+
+          // [STEP 1] Draw the button to be added
+          const button = PSDom.draw(`
                         <button 
                             type="button"
                             style="
@@ -101,45 +101,45 @@ import {PSDom} from './PSDom.js'
                             Return to Survey
                         </button>
                     `);
-    
-    // [STEP 2] Auto register placeholders
-    const tag = document.querySelector(id)
-        ToolKit
+
+          // [STEP 2] Auto register placeholders
+          ToolKit
             .placeholder
             .keys(tag.dataset.url)
-            .forEach((key) => this.take(key))
-    
-    // [STEP 3] Auto register the target URL
-    this.url(tag.dataset.url)
+            .forEach((key) => this.take(key));
 
-    // [STEP 4] Bind required events
-    button.addEventListener('click', () => {
-        window.open(this.getUrl(), '_blank')
-    })
-    
-    SimpliTag.listeners.add("onStandardEventTracked", function(event) {
-        if(event.label === 'main creative viewed') {
-            button.style.display = 'block'
-        }
-    });
+          // [STEP 3] Auto register the target URL
+          this.url(tag.dataset.url);
 
-    // [STEP 5] - Draw in the wrapper
-    ToolKit.insertAfter(SimpliTag.vplacement().wrapper, button);
+          // [STEP 4] Bind required events
+          button.addEventListener('click', () => {
+            window.open(this.getUrl(), '_blank');
+          });
+
+          SimpliTag.listeners.add('onStandardEventTracked', function (event) {
+            if (event.label === 'main creative viewed') {
+              button.style.display = 'block';
+            }
+          });
+
+          // [STEP 5] - Draw in the wrapper
+          ToolKit.insertAfter(SimpliTag.vplacement().wrapper, button);
+        });
       return this;
     };
   };
 
-  PSBackToSurvey.prototype.make = function() {
+  PSBackToSurvey.prototype.make = function () {
     const simpli = w.__simpli;
 
-    if (typeof simpli === "undefined") {
+    if (typeof simpli === 'undefined') {
       throw new TypeError(
-        "PSBackToSurvey rely on Simpli Tag script. PLease include the required script first."
+        'PSBackToSurvey rely on Simpli Tag script. PLease include the required script first.',
       );
     }
 
-    (new PSBackToSurvey(simpli, PSToolKit)).start()
-  }
+    (new PSBackToSurvey(simpli, PSToolKit)).start();
+  };
 
   w.onload = PSBackToSurvey.make;
 
