@@ -151,9 +151,7 @@
     };
 
     this.start = function ( id='#PSBackToSurvey' ) {
-      
-      console.info("-- BACK TO SURVEY SCRIPT --");
-
+      // [STEP 1] Draw the button to be added
       const button = ToolKit.draw(`
                         <button 
                             type="button"
@@ -175,22 +173,32 @@
                         </button>
                     `);
     
-    SimpliTag.listeners.add("onStandardEventTracked", function(event) {
-        if(event.label === 'main creative viewed') {
-            console.log('Simpli Tag Event ------>', event)
-        }
-    });
-
+    // [STEP 2] Auto register placeholders
     const tag = document.querySelector(id)
-    console.dir(tag.dataset)
+        ToolKit
+            .placeholder
+            .keys(tag.dataset.url)
+            .forEach((key) => this.take(key))
+    
+    // [STEP 3] Auto register the target URL
+    this.url(tag.dataset.url)
 
-    // Attach click listener 
-    // button.addEventListener('click', () => {
+    // [STEP 4] Bind required events
+    button.addEventListener('click', () => {
+         console.log('Use:', this.getParamsToUse())
+         console.log('Replaced by:', this.getParamsToBeSet())
+         console.log('With in this URL:', this.getUrl())
         // window.open(this.getUrl(), '_blank')
-    // })
+    })
+    
+    // SimpliTag.listeners.add("onStandardEventTracked", function(event) {
+    //     if(event.label === 'main creative viewed') {
+    //         console.log('Simpli Tag Event ------>', event)
+    //     }
+    // });
 
-    // Draw in the wrapper
-    //   ToolKit.insertAfter(SimpliTag.vplacement().wrapper, button);
+    // [STEP 5] - Draw in the wrapper
+    ToolKit.insertAfter(SimpliTag.vplacement().wrapper, button);
       return this;
     };
   };
