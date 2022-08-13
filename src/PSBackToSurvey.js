@@ -6,9 +6,8 @@ import { PSDom } from './PSDom.js';
    * Initialize the PSBackToSurvey script.
    *
    * @param {SimpliTag} SimpliTag The SimpliTag main object.
-   * @param {PSToolKit} ToolKit The Toolkit of PadSquad
    */
-  const PSBackToSurvey = function (SimpliTag, ToolKit) {
+  const PSBackToSurvey = function (SimpliTag) {
     this.$config = {
       params: {},
       url: '',
@@ -38,20 +37,20 @@ import { PSDom } from './PSDom.js';
      *
      * @returns {[key: string]: string}
      */
-    this.getParamsToUse = () => ToolKit.queryString.only(Object.keys(this.$config.params));
+    this.getParamsToUse = () => PSToolKit.queryString.only(Object.keys(this.$config.params));
 
     /**
      * Get the parameters to be set in the URL.
      *
      * @returns {[key: string]: string}
      */
-    this.getParamsToBeSet = () => ToolKit.placeholder.transform(this.$config.params, this.getParamsToUse());
+    this.getParamsToBeSet = () => PSToolKit.placeholder.transform(this.$config.params, this.getParamsToUse());
 
     /**
      * Return the Final URL that will be opened.
      * @returns {string}
      */
-    this.getUrl = () => ToolKit.placeholder.write(this.$config.url, this.getParamsToBeSet());
+    this.getUrl = () => PSToolKit.placeholder.write(this.$config.url, this.getParamsToBeSet());
 
     /**
      * This method register a handler to open a new (_blank) window with the given URL
@@ -106,7 +105,7 @@ import { PSDom } from './PSDom.js';
                     `);
 
           // [STEP 2] Auto register placeholders
-          ToolKit
+          PSToolKit
             .placeholder
             .keys(tag.dataset.url)
             .forEach((key) => this.take(key));
@@ -126,13 +125,13 @@ import { PSDom } from './PSDom.js';
           });
 
           // [STEP 5] - Draw in the wrapper
-          ToolKit.insertAfter(SimpliTag.vplacement().wrapper, button);
+          PSToolKit.insertAfter(SimpliTag.vplacement().wrapper, button);
         });
       return this;
     };
   };
 
-  PSBackToSurvey.prototype.make = function () {
+  w.onload = function () {
     console.log('PSBackToSurvey: MAKE')
     const simpli = w.__simpli;
 
@@ -142,9 +141,7 @@ import { PSDom } from './PSDom.js';
       );
     }
 
-    (new PSBackToSurvey(simpli, PSToolKit)).start();
+    (new PSBackToSurvey(simpli)).start();
   };
-
-  w.onload = PSBackToSurvey.make;
 
 })(window);
