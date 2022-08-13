@@ -1,4 +1,5 @@
-import {PSToolKit} from 'PSToolKit'
+import {PSToolKit} from 'PSToolKit.js'
+import {PSDom} from 'PSDom.js'
 
 ((w) => {
   /**
@@ -75,6 +76,9 @@ import {PSToolKit} from 'PSToolKit'
      * @returns {void}
      */
     this.start = function ( id='#PSBackToSurvey' ) {
+      PSDom.when(id).then((tag) => {
+        console.dir(tag)
+      })
       // [STEP 1] Draw the button to be added
       const button = ToolKit.draw(`
                         <button 
