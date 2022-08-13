@@ -3,8 +3,8 @@ import {PSToolKit} from '../src/PSToolKit.js'
 describe('PSToolKit.js', () => {
 
     it('ToolKit.placeholder.write( text, placeholders)', () => {
-        const value = PSToolKit.placeholder.write('Hello {name}', { name: 'World' })
-        expect(value).toEqual('Hello World')
+        const value = PSToolKit.placeholder.write('Hello {name} {name}', { name: 'World' })
+        expect(value).toEqual('Hello World World')
     })
 
     it('ToolKit.placeholder.transform(map, values)', () => {

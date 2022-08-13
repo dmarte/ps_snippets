@@ -28,7 +28,7 @@ const PSToolKit = {
     write(text, placeholders = {}) {
       return Object
         .keys(placeholders)
-        .reduce((text, key) => text.replaceAll(`{${key}}`, placeholders[key] ?? ''), text);
+        .reduce((t, key) => String(t).replace(/{[\w]+}/gmi, placeholders[key] ?? ''), text);
     },
 
     /**

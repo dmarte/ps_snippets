@@ -82,12 +82,12 @@ import { PSDom } from '../PSDom.js';
      */
     this.start = function (id = '#PSBackToSurvey') {
 
-      console.log('PSBackToSurvey: START')
+      console.log('PSBackToSurvey: START');
 
       PSDom
         .when(id)
         .then((tag) => {
-          console.log('PSBackToSurvey: TAG READY')
+          console.log('PSBackToSurvey: TAG READY');
           // [STEP 1] Draw the button to be added
           const button = PSDom.draw(`
                         <button 
@@ -125,13 +125,15 @@ import { PSDom } from '../PSDom.js';
             window.open(this.getUrl(), '_blank');
           });
 
-          SimpliTag.listeners.add('onStandardEventTracked', function (event) {
-            console.log(event)
-            if (event.label === 'main creative viewed') {
-              console.log('PSBackToSurvey: DISPLAYED')
-              button.style.display = 'block';
-            }
-          });
+          SimpliTag.listeners.add(
+            'onStandardEventTracked',
+            function (event) {
+              if (event.label === 'main creative viewed') {
+                console.log('PSBackToSurvey: DISPLAYED');
+                button.style.display = 'block';
+              }
+            },
+          );
 
           // [STEP 5] - Draw in the wrapper
           PSToolKit.insertAfter(SimpliTag.vplacement().wrapper, button);
@@ -141,7 +143,7 @@ import { PSDom } from '../PSDom.js';
   };
 
   w.onload = function () {
-    console.log('PSBackToSurvey: MAKE')
+    console.log('PSBackToSurvey: MAKE');
     const simpli = w.__simpli;
 
     if (typeof simpli === 'undefined') {

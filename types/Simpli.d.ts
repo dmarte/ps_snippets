@@ -14,6 +14,22 @@ declare enum SimpliTagListener {
     onVideoEventTracked = 'onVideoEventTracked'
 }
 
+declare enum SimpliTagListenerEventLabel {
+    iabImpressionViewed ='iab impression viewed',
+    creativeExposeTime = 'creative exposure time',
+    creativeEngagement = 'creative engagement',
+    creativeRendered = 'creative rendered',
+    mainCreativeViewed ='main creative viewed'
+}
+
+declare type SimpliTagListenerEvent = {
+    assetName: string | null
+    eventName: SimpliTagListener
+    label: SimpliTagListenerEventLabel
+    type: 'standard' | 'custom'
+    who: 'auto'
+}
+
 declare interface SimpliTag {
     /**
      * Get the tag placement
@@ -23,6 +39,6 @@ declare interface SimpliTag {
      * Object used to add listener to the SimpliTag
      */
     listeners: {
-        add: (name: SimpliTagListener, callback: () => void ) => void
+        add: (name: SimpliTagListener, callback: (event : SimpliTagListenerEvent) => void ) => void
     }
 }
