@@ -143,10 +143,6 @@
      */
     this.url = function (url) {
         this.$config.url = url
-         console.log('Use:', this.getParamsToUse())
-         console.log('Replaced by:', this.getParamsToBeSet())
-         console.log('With in this URL:', this.getUrl())
-
       return this;
     };
 
@@ -156,6 +152,7 @@
                         <button 
                             type="button"
                             style="
+                                display:none;
                                 width: 250px; 
                                 height: 50px;
                                 margin: 40px 0; 
