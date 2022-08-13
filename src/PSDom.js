@@ -1,41 +1,41 @@
-export class PadSquadDOM {
+export const PSDom = {
     /**
      * Find a given DOMElement base on CSS selector or throw an exception.
      *
      * @param {string} selector HTML Selector
      * @returns HTMLElement
      */
-    static findOrFail(selector) {
-      const element = PadSquadDOM.find(selector);
+     findOrFail(selector) {
+      const element = this.find(selector);
       if (!element) {
         throw new DOMException(`No elements found for ${selector}.`);
       }
       return element;
-    }
+    },
     /**
      * Find a given HTMLElement in the DOM if exists.
      *
      * @param {string} selector CSS selector
      * @returns HTMLElement
      */
-    static find(selector) {
+    find(selector) {
       return document.querySelector(selector);
-    }
+    },
     /**
      * Wait until a given selector is present in the DOM.
      *
      * @param {string} selector CSS selector.
      * @returns Promise<HTMLElement>
      */
-    static when(selector) {
+    when(selector) {
       return new Promise((resolve, reject) => {
         try {
-          const element = PadSquadDOM.findOrFail(selector);
+          const element = PSDom.findOrFail(selector);
           resolve(element);
         } catch(ex) {
           console.dir(ex)
           const observer = new MutationObserver(() => {
-            const element = PadSquadDOM.find(selector);
+            const element = PSDom.find(selector);
   
             if (!element) {
               return;
