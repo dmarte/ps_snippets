@@ -129,7 +129,7 @@
      * Return the Final URL that will be opened.
      * @returns {string}
      */
-    this.getUrl = () =>  ToolKit.placeholder.write(url, this.getParamsToBeSet())
+    this.getUrl = () =>  ToolKit.placeholder.write(this.$config.url, this.getParamsToBeSet())
 
     /**
      * This method register a handler to open a new (_blank) window with the given URL
@@ -142,7 +142,7 @@
      * @returns {PSBackToSurvey}
      */
     this.url = function (url) {
-        
+        this.$config.url = url
          console.log('Use:', this.getParamsToUse())
          console.log('Replaced by:', this.getParamsToBeSet())
          console.log('With in this URL:', this.getUrl())
@@ -150,7 +150,7 @@
       return this;
     };
 
-    this.start = function () {
+    this.start = function ( id='#PSBackToSurvey' ) {
       
       console.info("-- BACK TO SURVEY SCRIPT --");
 
@@ -179,13 +179,16 @@
             console.log('Simpli Tag Event ------>', event)
     });
 
+    const tag = document.querySelector(id)
+    console.dir(tag)
+
     // Attach click listener 
-    button.addEventListener('click', () => {
-        window.open(this.getUrl(), '_blank')
-    })
+    // button.addEventListener('click', () => {
+        // window.open(this.getUrl(), '_blank')
+    // })
 
     // Draw in the wrapper
-      ToolKit.insertAfter(SimpliTag.vplacement().wrapper, button);
+    //   ToolKit.insertAfter(SimpliTag.vplacement().wrapper, button);
       return this;
     };
   };
@@ -204,13 +207,14 @@
     // Initialize the back to survey plugin
     w.PSBackToSurvey = new PSBackToSurvey(simpli, w.PSToolKit);
 
-    w.PSBackToSurvey
-    .take("survey_id")
-      .take("respondent_id")
-      .open(
-        "https://echeloninsights.com?respondent={respondent_id}&survey_id={survey_id}"
-      )
-      .start();
+    w.PSBackToSurvey.start()
+    // w.PSBackToSurvey
+    // .take("survey_id")
+    //   .take("respondent_id")
+    //   .open(
+    //     "https://echeloninsights.com?respondent={respondent_id}&survey_id={survey_id}"
+    //   )
+    //   .start();
   };
 })(window);
 
