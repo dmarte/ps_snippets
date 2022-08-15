@@ -4,12 +4,13 @@ export const PSDom = {
    * This method let you draw a string of HTML in to HTMLElement
    *
    * @param {string} html The HTML String
+   * @param {Object<string, Function>} bindings Custom bindings to be applied to the HTML Element.
    * @returns {HTMLElement}
    */
-  draw(html) {
+  draw(html, bindings = {}) {
     const template = document.createElement('template');
     template.innerHTML = String(html).replace(/(\r\n|\n|\r)(\s{2})+/gm, '');
-
+    template.content.firstChild.PadSquad = bindings;
     return template.content.firstChild;
   },
 

@@ -28,7 +28,7 @@ import { PSDom } from '../PSDom.js';
      * @param {string} targetKeyName The placeholder key name to hold the value.
      * @returns {PSBackToSurvey}
      */
-    this.take = function (originalKeyName, targetKeyName) {
+    this.take = function (originalKeyName, targetKeyName= '') {
       if (!targetKeyName) {
         targetKeyName = originalKeyName;
       }
@@ -96,20 +96,27 @@ import { PSDom } from '../PSDom.js';
                                 display:none;
                                 width: 250px; 
                                 height: 50px;
-                                margin: 40px 0; 
-                                margin-left: calc(50% - 125px); 
+                                margin: 40px 0 40px calc(50% - 125px); 
                                 background-color: #5abf59; 
-                                color:white;
-                                border:none;
+                                color: white;
+                                border: none;
                                 border-radius: 7px;
                                 font-size: 22px;
                                 font-weight: bold;
                                 font-family: sans-serif
+                                cursor: pointer;
                                 "
                         >
                             ${tag.dataset.text ?? 'Return to Survey'}
                         </button>
-                    `);
+                    `, {
+            hide() {
+              this.style.display = 'none';
+            },
+            show() {
+              this.style.display = 'block';
+            }
+          });
 
           // [STEP 2] Auto register placeholders
           PSToolKit
@@ -125,15 +132,20 @@ import { PSDom } from '../PSDom.js';
             window.open(this.getUrl(), '_blank');
           });
 
-          SimpliTag.listeners.add(
-            'onStandardEventTracked',
-            function (event) {
-              if (event.label === 'main creative viewed') {
-                console.log('PSBackToSurvey: DISPLAYED');
-                button.style.display = 'block';
-              }
-            },
-          );
+          /** @type {boolean} */
+          if(SimpliTag?.runtime()?.creative?.mainCreativeViewed ?? false) {
+            button.show();
+          }
+
+          // SimpliTag.listeners.add(
+          //   'onStandardEventTracked',
+          //   function (event) {
+          //     if (event.label === 'main creative viewed') {
+          //       console.log('PSBackToSurvey: DISPLAYED');
+          //       button.style.display = 'block';
+          //     }
+          //   },
+          // );
 
           // [STEP 5] - Draw in the wrapper
           PSToolKit.insertAfter(SimpliTag.vplacement().wrapper, button);

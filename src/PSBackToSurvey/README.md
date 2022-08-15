@@ -41,7 +41,6 @@ The user will be prompted to the new URL:
 
 ```html
 <!-- BASE TEMPLATE TO INSTALL THE SCRIPT -->
-<!-- data-target is where you put your target URL -->
 <script
   id="PSBackToSurvey"
   type="module"
