@@ -69,4 +69,9 @@ describe('PSDom.js', () => {
     expect(element.show).toBeInstanceOf(Function);
     expect(element.hide).toBeInstanceOf(Function);
   })
+
+  it('ToolKit.outerHeight(element)', () => {
+    const element = PSDom.draw('<div style="height: 20px; padding-top: 10px; padding-bottom:10px"></div>');
+    expect(PSDom.outerHeight(element)).toEqual(40);
+  })
 });

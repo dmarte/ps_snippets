@@ -1,5 +1,17 @@
 export const PSDom = {
-
+  /**
+   * Get the element full height in pixels.
+   * (including margin, padding and border)
+   *
+   * @param {HTMLElement} element
+   * @returns {number}
+   */
+  outerHeight(element) {
+    const height = element.offsetHeight;
+    const marginTop = parseInt(element.style.marginTop ?? 0);
+    const marginBottom = parseInt(element.style.marginBottom ?? 0);
+    return (height + marginTop + marginBottom);
+  },
   /**
    * This method let you draw a string of HTML in to HTMLElement
    *

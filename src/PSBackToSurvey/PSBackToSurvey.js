@@ -116,6 +116,14 @@ import { PSDom } from '../PSDom.js';
             },
             show() {
               console.log('PSBackToSurvey: DISPLAYED');
+
+              const addBreak = SimpliTag.vplacement().wrapper.closest('.adBreak');
+              // Not apply for tiles format types
+              if (addBreak.clientHeight < 251) {
+                return;
+              }
+              addBreak.style.height = `${addBreak.clientHeight + PSDom.outerHeight(button)}px`;
+
               button.style.display = 'block';
             },
           });
@@ -147,7 +155,7 @@ import { PSDom } from '../PSDom.js';
           }
           // If instead the creative is already visible, show the button ASAP.
           else {
-            button.show()
+            button.show();
           }
 
           // [STEP 5] - Draw in the wrapper
