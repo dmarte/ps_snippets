@@ -28,7 +28,7 @@ import { PSDom } from '../PSDom.js';
      * @param {string} targetKeyName The placeholder key name to hold the value.
      * @returns {PSBackToSurvey}
      */
-    this.take = function (originalKeyName, targetKeyName= '') {
+    this.take = function (originalKeyName, targetKeyName = '') {
       if (!targetKeyName) {
         targetKeyName = originalKeyName;
       }
@@ -111,11 +111,13 @@ import { PSDom } from '../PSDom.js';
                         </button>
                     `, {
             hide() {
+              console.log('PSBackToSurvey: HIDE');
               button.style.display = 'none';
             },
             show() {
+              console.log('PSBackToSurvey: DISPLAYED');
               button.style.display = 'block';
-            }
+            },
           });
 
           // [STEP 2] Auto register placeholders
@@ -131,22 +133,22 @@ import { PSDom } from '../PSDom.js';
           button.addEventListener('click', () => {
             window.open(this.getUrl(), '_blank');
           });
-
-          /** @type {boolean} */
-          if(SimpliTag?.runtime()?.creative?.mainCreativeViewed ?? false) {
-            console.log('PSBackToSurvey: DISPLAYED');
-            button.show();
+          // When at first load, if the creative is not visible, add a watcher event
+          // to know when the creative is visible and then show the button.
+          if (!(SimpliTag?.runtime()?.creative?.mainCreativeViewed ?? false)) {
+            SimpliTag.listeners.add(
+              'onStandardEventTracked',
+              function (event) {
+                if (event.label === 'main creative viewed') {
+                  button.show();
+                }
+              },
+            );
           }
-
-          // SimpliTag.listeners.add(
-          //   'onStandardEventTracked',
-          //   function (event) {
-          //     if (event.label === 'main creative viewed') {
-          //       console.log('PSBackToSurvey: DISPLAYED');
-          //       button.style.display = 'block';
-          //     }
-          //   },
-          // );
+          // If instead the creative is already visible, show the button ASAP.
+          else {
+            button.show()
+          }
 
           // [STEP 5] - Draw in the wrapper
           PSToolKit.insertAfter(SimpliTag.vplacement().wrapper, button);
