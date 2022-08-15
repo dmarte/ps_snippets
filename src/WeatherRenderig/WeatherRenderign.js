@@ -1,1 +1,4 @@
-console.log('Hi',this);
+window.addEventListener('load', () => { 
+    console.log('simpli...');
+    console.log(__simpli);
+})
