@@ -78,7 +78,7 @@ import { PSDom } from '../PSDom.js';
      * Initialize the plugin in the browser.
      *
      * @param {string} id The ID of the script with the meta data.
-     * @returns {void}
+     * @returns {PSBackToSurvey}
      */
     this.start = function (id = '#PSBackToSurvey') {
 
@@ -134,6 +134,7 @@ import { PSDom } from '../PSDom.js';
 
           /** @type {boolean} */
           if(SimpliTag?.runtime()?.creative?.mainCreativeViewed ?? false) {
+            console.log('PSBackToSurvey: DISPLAYED');
             button.show();
           }
 
@@ -150,6 +151,7 @@ import { PSDom } from '../PSDom.js';
           // [STEP 5] - Draw in the wrapper
           PSToolKit.insertAfter(SimpliTag.vplacement().wrapper, button);
         });
+
       return this;
     };
   };
@@ -164,7 +166,7 @@ import { PSDom } from '../PSDom.js';
       );
     }
 
-    (new PSBackToSurvey(simpli)).start();
+    w.PSBackToSurvey = (new PSBackToSurvey(simpli)).start();
   };
 
 })(window);
