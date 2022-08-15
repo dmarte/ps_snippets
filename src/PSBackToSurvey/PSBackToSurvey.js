@@ -151,7 +151,7 @@ import { PSDom } from '../PSDom.js';
           }
 
           // [STEP 5] - Draw in the wrapper
-          PSToolKit.insertAfter(SimpliTag.vplacement().wrapper, button);
+          PSToolKit.insertAfter(SimpliTag.vplacement().wrapper.firstChild, button);
         });
 
       return this;
