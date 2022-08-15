@@ -1,1 +1,1 @@
-console.log('Hi',document.getElementById('simpli-vplacement-'));
+console.log('Hi',this);
