@@ -56,4 +56,17 @@ describe('PSDom.js', () => {
     expect(element).toBeInstanceOf(HTMLElement)
     expect(element.outerHTML).toEqual('<div class="foo-bar"></div>');
   })
+
+  it('ToolKit.draw(html) with bindings', () => {
+    const element = PSDom.draw('<div class="foo-bar"></div>', {
+      show() {
+        element.style.display = 'block'
+      },
+      hide() {
+        element.style.display = 'hide'
+      }
+    });
+    expect(element.show).toBeInstanceOf(Function);
+    expect(element.hide).toBeInstanceOf(Function);
+  })
 });

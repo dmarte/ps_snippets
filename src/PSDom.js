@@ -10,7 +10,11 @@ export const PSDom = {
   draw(html, bindings = {}) {
     const template = document.createElement('template');
     template.innerHTML = String(html).replace(/(\r\n|\n|\r)(\s{2})+/gm, '');
-    template.content.firstChild.PadSquad = bindings;
+    Object
+      .keys(bindings)
+      .forEach((key) => {
+        template.content.firstChild[key] = bindings[key];
+      });
     return template.content.firstChild;
   },
 
@@ -53,7 +57,7 @@ export const PSDom = {
           if (!element) {
             return;
           }
-          observer.disconnect()
+          observer.disconnect();
           resolve(element);
         });
 

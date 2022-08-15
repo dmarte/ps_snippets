@@ -111,10 +111,10 @@ import { PSDom } from '../PSDom.js';
                         </button>
                     `, {
             hide() {
-              this.style.display = 'none';
+              button.style.display = 'none';
             },
             show() {
-              this.style.display = 'block';
+              button.style.display = 'block';
             }
           });
 
