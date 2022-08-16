@@ -35,7 +35,8 @@ window.addEventListener('load', () => {
     console.log("papa",parents);
 
     parents.forEach(element => {
-        console.log(element);  
+        console.log("el",element); 
+        console.log("computed",window.getComputedStyle(element).overflow); 
     });
 
 })
