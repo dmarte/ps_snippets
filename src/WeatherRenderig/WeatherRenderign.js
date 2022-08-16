@@ -15,4 +15,22 @@ window.addEventListener('load', () => {
         // simpliTagEnvouterWrapper.closest('.Card--card--HiWPW').style.margin = '12px 0px';
     }  
 
+    var getParents = function (elem) {
+
+        // Set up a parent array
+        var parents = [];
+    
+        // Push each parent element to the array
+        for ( ; elem && elem !== document; elem = elem.parentNode ) {
+            parents.push(elem);
+        }
+
+        // Return our parent array
+        return parents;
+    
+    };
+
+    var parents = getParents(simpliTagEnvouterWrapper);
+    console.log("papa",parents);
+
 })
