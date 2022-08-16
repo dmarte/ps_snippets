@@ -1,21 +1,8 @@
 window.addEventListener('load', () => { 
 
-    const simpliTagEnvouterWrapper = __simpli.runtime().environment.outerWrapper;
+    const simpliTagEnvOuterWrapper = __simpli.runtime().environment.outerWrapper;
 
-    if(simpliTagEnvouterWrapper.closest('.BaseAd--adWrapper--2qtTX.BaseAd--card--1NlKb')){
-
-        // simpliTagEnvouterWrapper.closest('.BaseAd--adWrapper--2qtTX.BaseAd--card--1NlKb').style.visibility = 'visible';
-        // simpliTagEnvouterWrapper.closest('.BaseAd--adWrapper--2qtTX.BaseAd--card--1NlKb').style.margin = '12px 0px';
-        // simpliTagEnvouterWrapper.closest('.BaseAd--adWrapper--2qtTX.BaseAd--card--1NlKb').style.zIndex = '100 !important';
-    
-    }
-    
-    if(simpliTagEnvouterWrapper.closest('.Card--card--HiWPW')){
-        simpliTagEnvouterWrapper.closest('.Card--card--HiWPW').style.overflow = 'visible';
-        // simpliTagEnvouterWrapper.closest('.Card--card--HiWPW').style.margin = '12px 0px';
-    }  
-
-    var getParents = function (elem) {
+    const getParents =  (elem) => {
 
         // Set up a parent array
         let parentsArray = [];
@@ -30,16 +17,16 @@ window.addEventListener('load', () => {
     
     };
 
-    const parents = getParents(simpliTagEnvouterWrapper);
+    const parents = getParents(simpliTagEnvOuterWrapper);
 
+    // Search each parent element that have a hidden overflow and set it as visible.
     parents.forEach(element => {
+        console.log(element)
        
-        let currentElement = window.getComputedStyle(element).overflow
-        console.log(currentElement);
+        let currentElement = window.getComputedStyle(element).overflow;
+
         if(currentElement == 'hidden'){
-            
-            console.log('we founded!!!');
-            console.log(element);
+            element.style.overflow = 'visible';
         }
 
     });
