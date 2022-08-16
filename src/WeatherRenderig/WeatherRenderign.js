@@ -18,28 +18,24 @@ window.addEventListener('load', () => {
     var getParents = function (elem) {
 
         // Set up a parent array
-        var parents = [];
+        let parentsArray = [];
     
         // Push each parent element to the array
         for ( ; elem && elem !== document; elem = elem.parentNode ) {
-            parents.push(elem);
+            parentsArray.push(elem);
         }
 
         // Return our parent array
-        return parents;
+        return parentsArray;
     
     };
 
-    var parents = getParents(simpliTagEnvouterWrapper);
-    
-    console.log("papa",parents);
+    const parents = getParents(simpliTagEnvouterWrapper);
 
     parents.forEach(element => {
-        console.log("el",element); 
-        console.log("computed",window.getComputedStyle(element).overflow);
-        if(window.getComputedStyle(element).overflow === "hidden"){
-            element.style.visibility = 'visible';
-        }
+       
+        let currentElement = window.getComputedStyle(element).overflow
+        console.log(currentElement);
     });
 
 })
