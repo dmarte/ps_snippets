@@ -81,12 +81,6 @@ import { PSDom } from '../PSDom.js';
      * @returns {PSBackToSurvey}
      */
     this.start = function (id = '#PSBackToSurvey') {
-
-      if(!SimpliTag.runtime().environment.isFriendlyIframe) {
-        console.warn('PSBackToSurvey is only available in friendly iframe.');
-        return this;
-      }
-
       console.log('PSBackToSurvey: START');
 
       PSDom
@@ -123,14 +117,19 @@ import { PSDom } from '../PSDom.js';
 
             },
             show() {
+
               console.log('PSBackToSurvey: DISPLAYED');
+
               const placement = SimpliTag.vplacement();
+
               const airInitHolder = placement.wrapper.firstChild
+
               const adBreak = placement.wrapper.closest('.adBreak')
-              // const type = airInitHolder.className.replace('air-ad__','')
+
               let unit = PSDom.outerHeight(airInitHolder) + PSDom.outerHeight(button)
 
               adBreak.style.height = `${unit}px`
+
               button.style.display = 'block';
             },
           });
@@ -174,7 +173,7 @@ import { PSDom } from '../PSDom.js';
   };
 
   w.onload = function () {
-    console.log('PSBackToSurvey: MAKE');
+    /** @type {SimpliTag} */
     const simpli = w.__simpli;
 
     if (typeof simpli === 'undefined') {
@@ -182,6 +181,13 @@ import { PSDom } from '../PSDom.js';
         'PSBackToSurvey rely on Simpli Tag script. PLease include the required script first.',
       );
     }
+
+    if(!simpli?.runtime()?.environment?.isFriendlyIframe) {
+      console.warn('PSBackToSurvey is only available in friendly iframe.');
+      return this;
+    }
+
+    console.log('PSBackToSurvey: INIT');
 
     w.PSBackToSurvey = (new PSBackToSurvey(simpli)).start();
   };
