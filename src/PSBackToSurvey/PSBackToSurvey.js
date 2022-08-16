@@ -118,7 +118,10 @@ import { PSDom } from '../PSDom.js';
 
             },
             show() {
-
+PSDom.when('#air_init_holder').then((tag) =>{
+  console.dir(tag)
+})
+              return
               console.log('PSBackToSurvey: DISPLAYED');
 
               const placement = SimpliTag.vplacement().wrapper;
