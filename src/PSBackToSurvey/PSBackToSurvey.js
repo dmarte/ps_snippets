@@ -118,8 +118,8 @@ import { PSDom } from '../PSDom.js';
 
             },
             show() {
-PSDom.when('#air_init_holder').then((tag) =>{
-  console.dir(tag)
+PSDom.when('#air_init_holder').then(() =>{
+  console.dir(document.getElementById('air_init_holder'));
 })
               return
               console.log('PSBackToSurvey: DISPLAYED');
