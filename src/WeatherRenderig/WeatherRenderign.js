@@ -38,7 +38,7 @@ window.addEventListener('load', () => {
         console.log("el",element); 
         console.log("computed",window.getComputedStyle(element).overflow);
         if(window.getComputedStyle(element).overflow === "hidden"){
-            element.style.visibility = visible;
+            element.style.visibility = 'visible';
         }
     });
 
