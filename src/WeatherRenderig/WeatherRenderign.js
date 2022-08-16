@@ -11,7 +11,7 @@ window.addEventListener('load', () => {
     }
     
     if(simpliTagEnvouterWrapper.closest('.Card--card--HiWPW')){
-        // simpliTagEnvouterWrapper.closest('.Card--card--HiWPW').style.visibility = 'visible';
+        simpliTagEnvouterWrapper.closest('.Card--card--HiWPW').style.overflow = 'visible';
         // simpliTagEnvouterWrapper.closest('.Card--card--HiWPW').style.margin = '12px 0px';
     }  
 
