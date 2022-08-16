@@ -21,14 +21,15 @@ window.addEventListener('load', () => {
 
     // Search each parent element that have a hidden overflow and set it as visible.
     parents.forEach(element => {
-        console.log(element)
-       
-        let currentElement = window.getComputedStyle(element).overflow;
 
-        if(currentElement == 'hidden'){
-            element.style.overflow = 'visible';
+        if(element.tagName != undefined){
+            let currentElement = window.getComputedStyle(element).overflow;
+
+            if(currentElement == 'hidden'){
+                element.style.overflow = 'visible';
+            }
         }
-
+        
     });
 
 })
