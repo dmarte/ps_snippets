@@ -118,31 +118,11 @@ import { PSDom } from '../PSDom.js';
 
             },
             show() {
-PSDom.when('#air_init_holder').then(() =>{
-  console.dir(document.getElementById('air_init_holder'));
-})
-              return
               console.log('PSBackToSurvey: DISPLAYED');
-
-              const placement = SimpliTag.vplacement().wrapper;
-              let addBreak;
-
-              for(var i =0; i < placement.childNodes.length; i++) {
-                if(!placement.childNodes[i].id !== 'air_init_holder') {
-                  break;
-                }
-                addBreak = placement.childNodes[i];
-              }
-
-              console.log(addBreak)
-console.log('HEIGHT AD BREAK:',addBreak.clientHeight)
-              let unit = +(addBreak?.clientHeight + button?.offsetHeight + 15);
-console.log(unit, addBreak)
-    // if(unit < 340) { unit = 340 }
-
-              addBreak.style.height = `${unit}px`;
-
-              button.style.display = 'block';
+              const airInitHolder = SimpliTag.vplacement().wrapper.firstChild
+              const addBlock = SimpliTag.vplacement().wrapper.closest('.adBlock')
+              console.log(airInitHolder, addBlock)
+              // button.style.display = 'block';
             },
           });
 
