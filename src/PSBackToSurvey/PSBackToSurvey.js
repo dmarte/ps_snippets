@@ -121,11 +121,12 @@ import { PSDom } from '../PSDom.js';
 
               console.log('PSBackToSurvey: DISPLAYED');
 
-              const addBreak = SimpliTag.vplacement().wrapper.closest('.adBreak');
+              const addBreak = SimpliTag.vplacement().wrapper.closest('#air_init-hilder');
 console.log('HEIGHT AD BREAK:',addBreak.clientHeight)
-              let unit = addBreak.clientHeight + button.offsetHeight + 15;
-
-    if(unit < 340) { unit = 340 }
+              let unit = +(addBreak?.clientHeight + button?.offsetHeight + 15);
+window.PSBackToSurvey = addBreak
+console.log(unit, addBreak)
+    // if(unit < 340) { unit = 340 }
 
               addBreak.style.height = `${unit}px`;
 
