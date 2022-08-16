@@ -8,8 +8,9 @@ export const PSDom = {
    */
   outerHeight(element) {
     const height = element.offsetHeight;
-    const marginTop = parseInt(element.style.marginTop ?? 0);
-    const marginBottom = parseInt(element.style.marginBottom ?? 0);
+
+    const marginTop = parseInt(element.style?.marginTop || 0) || 0;
+    const marginBottom = parseInt(element.style?.marginBottom || 0) || 0 ;
     return (height + marginTop + marginBottom);
   },
   /**
