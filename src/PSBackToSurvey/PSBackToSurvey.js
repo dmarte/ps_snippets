@@ -82,6 +82,11 @@ import { PSDom } from '../PSDom.js';
      */
     this.start = function (id = '#PSBackToSurvey') {
 
+      if(!SimpliTag.runtime().environment.isFriendlyIframe) {
+        console.warn('PSBackToSurvey is only available in friendly iframe.');
+        return this;
+      }
+
       console.log('PSBackToSurvey: START');
 
       PSDom
@@ -119,9 +124,10 @@ import { PSDom } from '../PSDom.js';
             },
             show() {
               console.log('PSBackToSurvey: DISPLAYED');
-              const airInitHolder = SimpliTag.vplacement().wrapper.firstChild
-              const adBreak = SimpliTag.vplacement().wrapper.closest('.adBreak')
-              const type = airInitHolder.className.replace('air-ad__','')
+              const placement = SimpliTag.vplacement();
+              const airInitHolder = placement.wrapper.firstChild
+              const adBreak = placement.wrapper.closest('.adBreak')
+              // const type = airInitHolder.className.replace('air-ad__','')
               let unit = PSDom.outerHeight(airInitHolder) + PSDom.outerHeight(button)
 
               adBreak.style.height = `${unit}px`
