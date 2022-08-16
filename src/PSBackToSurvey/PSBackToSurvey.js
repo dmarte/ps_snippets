@@ -120,8 +120,9 @@ import { PSDom } from '../PSDom.js';
             show() {
               console.log('PSBackToSurvey: DISPLAYED');
               const airInitHolder = SimpliTag.vplacement().wrapper.firstChild
-              const addBlock = SimpliTag.vplacement().wrapper.closest('.adBlock')
-              console.log(airInitHolder, addBlock)
+              const addBlock = SimpliTag.vplacement().wrapper.closest('.adBreak')
+              const type = airInitHolder.className.replace('air-ad__','')
+              console.log(type)
               // button.style.display = 'block';
             },
           });
