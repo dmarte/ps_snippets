@@ -111,17 +111,19 @@ import { PSDom } from '../PSDom.js';
                         </button>
                     `, {
             hide() {
+
               console.log('PSBackToSurvey: HIDE');
+
               button.style.display = 'none';
+
             },
             show() {
+
               console.log('PSBackToSurvey: DISPLAYED');
+
               const addBreak = SimpliTag.vplacement().wrapper.closest('.adBreak');
-              // Not apply for tiles format types
-              if (addBreak.clientHeight < 251) {
-                return;
-              }
-              addBreak.style.height = `${addBreak.clientHeight + button.offsetHeight}px`;
+
+              addBreak.style.height = `${addBreak.clientHeight + button.offsetHeight + 15}px`;
 
               button.style.display = 'block';
             },
