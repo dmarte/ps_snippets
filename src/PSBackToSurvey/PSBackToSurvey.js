@@ -122,7 +122,7 @@ import { PSDom } from '../PSDom.js';
               console.log('PSBackToSurvey: DISPLAYED');
 
               const addBreak = SimpliTag.vplacement().wrapper.closest('.adBreak');
-
+console.log('HEIGHT AD BREAK:',addBreak.clientHeight)
               addBreak.style.height = `${addBreak.clientHeight + button.offsetHeight + 15}px`;
 
               button.style.display = 'block';
