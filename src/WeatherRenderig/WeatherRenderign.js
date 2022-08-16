@@ -31,6 +31,11 @@ window.addEventListener('load', () => {
     };
 
     var parents = getParents(simpliTagEnvouterWrapper);
+    
     console.log("papa",parents);
+
+    parents.forEach(element => {
+        console.log(element);  
+    });
 
 })
