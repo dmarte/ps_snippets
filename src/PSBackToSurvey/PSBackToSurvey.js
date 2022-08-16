@@ -125,7 +125,7 @@ import { PSDom } from '../PSDom.js';
 console.log('HEIGHT AD BREAK:',addBreak.clientHeight)
               let unit = addBreak.clientHeight + button.offsetHeight + 15;
 
-    if(unit < 265) { unit = 265 }
+    if(unit < 340) { unit = 340 }
 
               addBreak.style.height = `${unit}px`;
 
