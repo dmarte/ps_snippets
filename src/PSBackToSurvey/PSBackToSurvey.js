@@ -123,7 +123,11 @@ import { PSDom } from '../PSDom.js';
 
               const addBreak = SimpliTag.vplacement().wrapper.closest('.adBreak');
 console.log('HEIGHT AD BREAK:',addBreak.clientHeight)
-              addBreak.style.height = `${addBreak.clientHeight + button.offsetHeight + 15}px`;
+              let unit = addBreak.clientHeight + button.offsetHeight + 15;
+
+    if(unit < 265) { unit = 265 }
+
+              addBreak.style.height = `${unit}px`;
 
               button.style.display = 'block';
             },
