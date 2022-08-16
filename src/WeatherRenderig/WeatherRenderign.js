@@ -36,6 +36,10 @@ window.addEventListener('load', () => {
        
         let currentElement = window.getComputedStyle(element).overflow
         console.log(currentElement);
+        if(currentElement == 'hidden'){
+            console.log('we founded!!!')
+        }
+
     });
 
 })
