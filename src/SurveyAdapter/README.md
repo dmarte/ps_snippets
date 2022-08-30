@@ -1,23 +1,23 @@
-### PSBackToSurvey
+### SurveyAdapter
 
 There are users that receive a preview link with the creative so they can see the placement
 to be test, then check what is the experience with that creative and after test, the user must go back to continue with the marketing survey.
- 
-> The purpose of this plugin script is to render a button below the creative to let those users 
+
+> The purpose of this plugin script is to render a button below the creative to let those users
 > that comes from a survey return and continue with they survey.
 
 ### How it works?
 
 The plugin is auto initialized when the script is included in the page. You just have to set the `URL` with the placeholders that must be used to redirect the user.
 
-`PSBackToSurvey` use `window.location.search` values to replace the placeholders used within a URL.
+`SurveyAdapter` use `window.location.search` values to replace the placeholders used within a URL.
 
 #### Example Script:
  ```html
   <script
-   id="PSBackToSurvey"
+   id="SurveyAdapter"
    type="module"
-   src="<cdn>/ps_snippets/dist/PSBackToSurvey.min.js"
+   src="https://assets.padsquad.com/utils/surveyAdapter.js"
    data-target="https://example.com?bar={foo_id}"
   ></script>
  ```
@@ -42,9 +42,9 @@ The user will be prompted to the new URL:
 ```html
 <!-- BASE TEMPLATE TO INSTALL THE SCRIPT -->
 <script
-  id="PSBackToSurvey"
+  id="SurveyAdapter"
   type="module"
-  src="https://dmarte.github.io/ps_snippets/dist/PSBackToSurvey.bundle.min.js"
+  src="https://assets.padsquad.com/utils/surveyAdapter.js"
   data-target=""
 ></script>
 ```
