@@ -279,11 +279,11 @@ class Clock {
   
         this.$listeners.seconds.forEach((callback) => callback(state));
   
-        if (timer.seconds > 59) {
+        if (state.seconds > 59 || state.seconds === 0) {
           this.$listeners.minutes.forEach((callback) => callback(state));
         }
   
-        if (timer.minutes > 59) {
+        if (state.minutes > 59 || state.seconds === 0) {
           this.$listeners.hours.forEach((callback) => callback(state));
         }
       }, 1000);

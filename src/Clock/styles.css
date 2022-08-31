@@ -9,10 +9,11 @@
     justify-content: space-around;
     padding-top: 3px;
     border: 1px solid;
+    min-height: 60px;
     min-width: 200px;
     width: 100%;
     border-radius: 4px;
-    font-size: 6vh;
+    font-size: 44px;
     color: #fff;
     background-color: rgb(46, 46, 46);
     border-color: #000;
