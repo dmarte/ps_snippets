@@ -1,0 +1,66 @@
+@font-face {
+    font-family: digital;
+    src: url('./fonts/woff/digital-7.woff') format('woff'); /* Modern browsers */
+    src: url('./fonts/ttf/digital-7.ttf') format('truetype'); /* Safari, Android, Ios */
+}
+.clock {
+    font-family: digital, sans-serif;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 3px;
+    border: 1px solid;
+    min-width: 200px;
+    width: 100%;
+    border-radius: 4px;
+    font-size: 6vh;
+    color: #fff;
+    background-color: rgb(46, 46, 46);
+    border-color: #000;
+    box-shadow: 0px 4px 8px 0px #00000080;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+.clock > .clock-numeric,
+.clock > .clock-divider {
+    color: red;
+    flex-grow: 1;
+    display: inline-flex;
+    justify-content: center;
+}
+.clock > .clock-divider {
+    max-width: 15px;
+    text-align: center;
+    transition: 3ms ease-in-out all;
+    -webkit-animation: fade 900ms linear infinite;
+    animation: fade 900ms linear infinite;
+}
+.clock > .clock-numeric {
+    max-width:fit-content;
+}
+.clock > .clock-numeric > .clock-mask {
+    position: absolute;
+    z-index:0;
+    opacity: .3;
+}
+.clock > .clock-numeric > .clock-number {
+    font-variant-numeric: tabular-nums;
+    width: 100%;
+    text-align: right;
+    font-family: 'digital';
+    display: flex;
+}
+.clock > .clock-numeric > .clock-number > .clock-char {
+    width: 20px;
+}
+
+@-webkit-keyframes fade {
+    0%,100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+@keyframes fade {
+    0%,100% { opacity: 0 }
+    50% { opacity: 1 }
+}
