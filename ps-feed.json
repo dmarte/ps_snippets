@@ -1,0 +1,86 @@
+[
+    {
+        "title": "Product 1",
+        "sku": "SKU-PRODUCT-1",
+        "image": "https://www.petfoodprocessing.net/ext/resources/PFP-Images/Articles-20/042021_Petco_sustainability_Lead.jpg",
+        "url": "https://www.petco.com",
+        "price": 9.99
+    },
+    {
+        "title": "Product 2",
+        "sku": "SKU-PRODUCT-2",
+        "image": "https://www.petfoodprocessing.net/ext/resources/PFP-Images/Articles-20/042021_Petco_sustainability_Lead.jpg",
+        "url": "https://www.petco.com",
+        "price": 12.55
+    },
+    {
+        "title": "Product 3",
+        "sku": "SKU-PRODUCT-3",
+        "image": "https://www.petfoodprocessing.net/ext/resources/PFP-Images/Articles-20/042021_Petco_sustainability_Lead.jpg",
+        "url": "https://www.petco.com",
+        "price": 8.99
+    },
+    {
+        "title": "Product 4",
+        "sku": "SKU-PRODUCT-4",
+        "image": "https://www.petfoodprocessing.net/ext/resources/PFP-Images/Articles-20/042021_Petco_sustainability_Lead.jpg",
+        "url": "https://www.petco.com",
+        "price": 15
+    },
+    {
+        "title": "Product 5",
+        "sku": "SKU-PRODUCT-5",
+        "image": "https://www.petfoodprocessing.net/ext/resources/PFP-Images/Articles-20/042021_Petco_sustainability_Lead.jpg",
+        "url": "https://www.petco.com",
+        "price": 165
+    },
+    {
+        "title": "Product 6",
+        "sku": "SKU-PRODUCT-6",
+        "image": "https://www.petfoodprocessing.net/ext/resources/PFP-Images/Articles-20/042021_Petco_sustainability_Lead.jpg",
+        "url": "https://www.petco.com",
+        "price": 10
+    },
+    {
+        "title": "Product 7",
+        "sku": "SKU-PRODUCT-7",
+        "image": "https://www.petfoodprocessing.net/ext/resources/PFP-Images/Articles-20/042021_Petco_sustainability_Lead.jpg",
+        "url": "https://www.petco.com",
+        "price": 9.99
+    },
+    {
+        "title": "Product 8",
+        "sku": "SKU-PRODUCT-8",
+        "image": "https://www.petfoodprocessing.net/ext/resources/PFP-Images/Articles-20/042021_Petco_sustainability_Lead.jpg",
+        "url": "https://www.petco.com",
+        "price": 12.55
+    },
+    {
+        "title": "Product 9",
+        "sku": "SKU-PRODUCT-9",
+        "image": "https://www.petfoodprocessing.net/ext/resources/PFP-Images/Articles-20/042021_Petco_sustainability_Lead.jpg",
+        "url": "https://www.petco.com",
+        "price": 8.99
+    },
+    {
+        "title": "Product 10",
+        "sku": "SKU-PRODUCT-10",
+        "image": "https://www.petfoodprocessing.net/ext/resources/PFP-Images/Articles-20/042021_Petco_sustainability_Lead.jpg",
+        "url": "https://www.petco.com",
+        "price": 15
+    },
+    {
+        "title": "Product 11",
+        "sku": "SKU-PRODUCT-11",
+        "image": "https://www.petfoodprocessing.net/ext/resources/PFP-Images/Articles-20/042021_Petco_sustainability_Lead.jpg",
+        "url": "https://www.petco.com",
+        "price": 165
+    },
+    {
+        "title": "Product 12",
+        "sku": "SKU-PRODUCT-12",
+        "image": "https://www.petfoodprocessing.net/ext/resources/PFP-Images/Articles-20/042021_Petco_sustainability_Lead.jpg",
+        "url": "https://www.petco.com",
+        "price": 10
+    }
+]
