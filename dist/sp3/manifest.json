@@ -1,0 +1,37 @@
+{
+  "node_modules/alpinejs/dist/module.esm.js": {
+    "file": "libs/lib-alpine.js",
+    "isEntry": true,
+    "src": "node_modules/alpinejs/dist/module.esm.js"
+  },
+  "src/core/Providers/AlpineProvider.ts": {
+    "file": "support/alpine.js",
+    "imports": [
+      "node_modules/alpinejs/dist/module.esm.js"
+    ],
+    "isEntry": true,
+    "src": "src/core/Providers/AlpineProvider.ts"
+  },
+  "src/core/Providers/PsCacheProvider.ts": {
+    "file": "support/cache.js",
+    "isEntry": true,
+    "src": "src/core/Providers/PsCacheProvider.ts"
+  },
+  "src/main.ts": {
+    "file": "simpli-tag.js",
+    "isEntry": true,
+    "src": "src/main.ts"
+  },
+  "src/package/SportData/Providers/SportDataNFLProvider.ts": {
+    "file": "package/api-sport-data/nfl.js",
+    "imports": [
+      "node_modules/alpinejs/dist/module.esm.js"
+    ],
+    "isEntry": true,
+    "src": "src/package/SportData/Providers/SportDataNFLProvider.ts"
+  },
+  "style.css": {
+    "file": "style.css",
+    "src": "style.css"
+  }
+}
