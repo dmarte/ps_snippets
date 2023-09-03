@@ -12,6 +12,11 @@
     "isEntry": true,
     "src": "src/core/Providers/AlpineProvider.ts"
   },
+  "src/core/Providers/AnimateProvider.ts": {
+    "file": "support/animate.js",
+    "isEntry": true,
+    "src": "src/core/Providers/AnimateProvider.ts"
+  },
   "src/core/Providers/PsCacheProvider.ts": {
     "file": "support/cache.js",
     "isEntry": true,
